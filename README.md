@@ -1,4 +1,4 @@
-# ssh_over_https
+# TCP over HTTPS
 
 Tools to tunnel arbitrary TCP connections such as SSH through HTTPS requests using the SCGI protocol.
 
@@ -19,6 +19,12 @@ To tunnel data, the frontend sends it as the body of an HTTP POST to an SCGI end
 ## Back end
 
 `tunnel_backend_server` is a minimal SCGI application. Each HTTP request appends bytes to a persistent connection on localhost, then returns any pending bytes from that connection as the HTTP response. The server automatically reconnects to the target when it closes, and request/response sizes are capped by constants in the source.
+
+### Example to run it
+
+```
+./tunnel_backend_server 9001 22
+```
 
 ### Example config for lighttpd
 
